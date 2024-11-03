@@ -1,12 +1,10 @@
-# Your Name Here
+# Connor Fisbeck
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# 11/3/2024
+# Lab 07
+# Lab Section: 15
 # Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# https://www.w3schools.com/python/ref_string_split.asp
 
 
 # Prompt the user for an upper bound 
@@ -16,8 +14,16 @@
     # To do so you can use the methods `.isdigit()` or `.isnumeric()`
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
-
+upper_bound = ''
 factorial = 1
+
+while upper_bound.isdigit() == False:
+    upper_bound = input('Please input a positive integer as an upper bound for your factorial: ')
+    if upper_bound.isdigit():
+        n = int(upper_bound)
+        while n >= 1:
+            factorial *= n
+            n -= 1
 
 print(f"The result of the factorial based on the given bound is {factorial}")
 
@@ -38,6 +44,28 @@ print("*"*75)
 # The sum should start at 0 
 
 num_sum = 0 
+i = 0
+user_exit = False
+
+while user_exit == False:
+    user_input = input('Input an integer to add to the sum or "exit" to quit: ').lower()
+    if user_input == 'exit':
+        user_exit = True
+    elif '-' in user_input:
+        pos_input = user_input.replace('-','')
+        if pos_input.isdigit():
+            i = int(pos_input)
+            num_sum -= i
+    elif user_input.isdigit():
+        i = int(user_input)
+        num_sum += i
+    else:
+        print('Given input was not an integer so it will not be added to the sum \n')
+
+
+
+
+
 
 print(f"Your final sum is {num_sum}")
 
@@ -59,4 +87,41 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
+def calculate(operand_1,operator,operand_2):
+    if operator == '+':
+        return int(operand_1) + int(operand_2)
+    elif operator == '-':
+        return int(operand_1) - int(operand_2)
+    elif operator == '/':
+        return int(operand_1) / int(operand_2)
+    elif operator == '*':
+        return int(operand_1) * int(operand_2)
+    elif operator == '%':
+        return int(operand_1) % int(operand_2)
+
+user_exit = False
+
+while user_exit == False:
+    expression = input('Please type the expression you would like to calculate: ').replace(' ','').lower()
+    if expression == 'exit':
+        user_exit = True
+    else:
+        for i in expression:
+            if i.isdigit()==False:
+                operator = i
+                operand_1,operand_2 = expression.split(i)
+        print(operand_1,operand_2)
+        result = calculate(operand_1,operator,operand_2)
+        print(f'\n{expression} = {result}\n')
+
+
+
+                
+
+    
+
+
+
+
         
+
